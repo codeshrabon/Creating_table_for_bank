@@ -1,0 +1,15 @@
+JAVA Springboot JDBC(Java Database Connectivity)
+
+1. Load Driver
+2. Define Connection URL
+3. Establish Connection
+4. Create Statement Object
+5. Execute Query Using Statement
+6. Process Result
+7. Close Connection
+
+1. Data Source -> application == Connection pooling == Database
+2. JDBC Template help on Data Source and help to write code efficient way....
+
+
+

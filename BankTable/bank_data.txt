@@ -1,0 +1,46 @@
+CREATE TABLE bank_data (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  account_name VARCHAR(255),
+  loan_account_number VARCHAR(100),
+  disbursment_date DATE,
+  amount DOUBLE,
+  rate_of_interest DOUBLE,
+  tenure VARCHAR(20), -- stores enum name like 'JANUARY'
+  type_of_loan VARCHAR(100),
+  eligible_security_value DOUBLE,
+  security_coverage INT,
+  security_details_as_per_sanction VARCHAR(255),
+  client_identification_done_with_varification BOOLEAN,
+  guarantor_identification_done_with_varification BOOLEAN,
+  fund_utilization_ensured BOOLEAN,
+  single_borrower_exposure_limit INT,
+  compliance_with_credit_policy BOOLEAN,
+  comments VARCHAR(255)
+);
+
+
+
+
+INSERT INTO bank_data (
+  account_name,
+  loan_account_number,
+  disbursment_date,
+  amount,
+  rate_of_interest,
+  tenure,
+  type_of_loan,
+  eligible_security_value,
+  security_coverage,
+  security_details_as_per_sanction,
+  client_identification_done_with_varification,
+  guarantor_identification_done_with_varification,
+  fund_utilization_ensured,
+  single_borrower_exposure_limit,
+  compliance_with_credit_policy,
+  comments
+) VALUES
+('Rahim Traders', 'LN2025001', '2024-11-15', 500000.00, 9.5, 'JULY', 'Working Capital', 650000.00, 130, 'Stock and Receivables Hypothecation', 1, 1, 1, 1000000, 1, 'Loan disbursed as per norms'),
+('Anika Agro Ltd.', 'LN2025002', '2025-01-05', 750000.00, 10.0, 'APRIL', 'Agri Loan', 900000.00, 120, 'Land mortgage', 1, 0, 1, 1200000, 1, 'Guarantor verification pending'),
+('Tech Innovators', 'LN2025003', '2025-03-12', 1000000.00, 11.0, 'JANUARY', 'Term Loan', 1050000.00, 105, 'Equipment hypothecation', 0, 1, 0, 1500000, 0, 'Client KYC incomplete'),
+('Green Earth Builders', 'LN2025004', '2025-05-01', 2000000.00, 8.75, 'AUGUST', 'Project Finance', 2500000.00, 125, 'Project Land and Building', 1, 1, 1, 5000000, 1, 'Compliant with large exposure norms'),
+('Nova Textiles', 'LN2025005', '2025-06-10', 850000.00, 9.25, 'NOVEMBER', 'Export Finance', 950000.00, 112, 'LC-backed receivables', 1, 1, 1, 1000000, 1, 'Eligible under export policy');

@@ -1,0 +1,28 @@
+Table project 
+
+Spring Initializer
+1. JDBC API
+2. H2 Database
+2.1 For MySQL or other one 
+in java project 
+src -> main -> resources -> application.properties
+
+Dependencies 
+1. Spring Web 
+2. Spring Data JPA
+3. MySQL Driver
+4. Lombok
+
+properties
+spring.application.name=BankTable
+#MySQL Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/bank_data_table
+spring.datasource.username=root
+spring.datasource.password=I@mfaysal.20
+
+#JPA Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+
