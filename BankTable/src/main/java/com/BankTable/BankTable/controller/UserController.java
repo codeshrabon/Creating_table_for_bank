@@ -59,7 +59,7 @@ public class UserController {
             user.setFund_utilization_ensured(updateUser.isFund_utilization_ensured());
             user.setSingle_borrower_exposure_limit(updateUser.getSingle_borrower_exposure_limit());
             user.setCompliance_with_credit_policy(updateUser.isCompliance_with_credit_policy());
-            user.setComment(updateUser.getComment());
+            user.setComments(updateUser.getComments());
             return ResponseEntity.ok(userRepository.save(user));
         }).orElse(ResponseEntity.notFound().build());
     }
