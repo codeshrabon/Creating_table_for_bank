@@ -9,23 +9,23 @@ import java.time.Month;
 import java.util.Date;
 
 @Entity
-@Table(name = "bank_data")
+@Table(name = "disbursement_info")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+/*@NoArgsConstructor
+@AllArgsConstructor*/
 public class User {
 
     @Id
-    @PrimaryKeyJoinColumn
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long serialNumber;
+    //@PrimaryKeyJoinColumn
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     private String account_name;
     private String loan_account_number;
     private Date disbursment_date;
     private double amount;
     private double rate_of_interest;
-    private Month tenure;
+    private String tenure;
     private String type_of_loan;
     private double eligible_security_value;
     private int security_coverage;
@@ -37,13 +37,13 @@ public class User {
     private boolean compliance_with_credit_policy;
     private String comments;
 
-    public long getSerialNumber() {
-        return serialNumber;
-    }
-
-    public void setSerialNumber(long serialNumber) {
-        this.serialNumber = serialNumber;
-    }
+//    public long getSerialNumber() {
+//        return serialNumber;
+//    }
+//
+//    public void setSerialNumber(long serialNumber) {
+//        this.serialNumber = serialNumber;
+//    }
 
     public String getAccount_name() {
         return account_name;
@@ -85,11 +85,11 @@ public class User {
         this.rate_of_interest = rate_of_interest;
     }
 
-    public Month getTenure() {
+    public String getTenure() {
         return tenure;
     }
 
-    public void setTenure(Month tenure) {
+    public void setTenure(String tenure) {
         this.tenure = tenure;
     }
 
@@ -165,11 +165,11 @@ public class User {
         this.compliance_with_credit_policy = compliance_with_credit_policy;
     }
 
-    public String getComment() {
+    public String getComments() {
         return comments;
     }
 
-    public void setComment(String comment) {
+    public void setComments(String comment) {
         this.comments = comment;
     }
 }

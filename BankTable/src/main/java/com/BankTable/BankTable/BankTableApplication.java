@@ -8,6 +8,7 @@ public class BankTableApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BankTableApplication.class, args);
+
 //		String name1  = "Faysal";
 //		String name2 = "Ahmed";
 //		System.out.println(name1 + name2);
