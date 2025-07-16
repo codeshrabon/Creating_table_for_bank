@@ -16,11 +16,11 @@ public class CommandLineApp implements CommandLineRunner {
 
     @Autowired
     private final UserRepository userRepo;
-    private final User user;
+    //private final User user;
 
-    public CommandLineApp(UserRepository userRepo, User user) {
+    public CommandLineApp(UserRepository userRepo) {
         this.userRepo = userRepo;
-        this.user = user;
+        //this.user = user;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class CommandLineApp implements CommandLineRunner {
             int choice = scanner.nextInt();
             scanner.nextLine();  // to have a clear buffer
             switch (choice){
-                case 1 -> addUser();
+                case 1 -> addUser(scanner);
                 case 2 -> findUser(scanner);
                 case 3 -> showAllUsers();
                 case 4 -> updateUsers(scanner);
@@ -94,32 +94,87 @@ public class CommandLineApp implements CommandLineRunner {
 
     // to update the specific user
     private void updateUsers(Scanner scanner) {
-//        User user = new User();
+       //User user = new User();
 
         System.out.print("Choose client id you like to update: ");
-        long id = scanner.nextInt();
+        long id = scanner.nextLong();
         scanner.nextLine();
         System.out.println("You choose " + id + " ID to update");
 //        Optional<User> user = userRepo.findById(id);
 //        System.out.println(userRepo.findById(id));
-        userRepo.findById(id).ifPresentOrElse(
 
-                user -> System.out.println("User fond: " + user),
+//        userRepo.findById(id).ifPresentOrElse(
+//
+//                user -> System.out.println("User fond: " + user),
+//
+//                () -> System.out.println("User not found with ID: " + id)
+//
+//        );
+//        System.out.println("Update your model " + id);
+//        System.out.println("Enter account name :");
+//
+//        userRepo.getReferenceById(id).setAccount_name(scanner.nextLine());
+//
+//        System.out.println("Enter Loan account number :");
+//        userRepo.getReferenceById(id).setLoan_account_number(scanner.nextLine());
 
-                () -> System.out.println("User not found with ID: " + id)
+        userRepo.findById(id).ifPresentOrElse(user ->{
+            System.out.println("Update user with ID: "+ id);
 
-        );
-        System.out.println("Update your model " + id);
-        System.out.println("Enter account name :");
-        user.setAccount_name(scanner.nextLine());
+            System.out.print("Enter account name: ");
+            user.setAccount_name(scanner.nextLine());
 
-        System.out.println("Enter Loan account number :");
-        user.setLoan_account_number(scanner.nextLine());
+            System.out.print("Enter loan account number: ");
+            user.setLoan_account_number(scanner.nextLine());
 
-
-
+            System.out.print("Enter An amount: ");
+            user.setAmount(scanner.nextDouble());
 
 
+            System.out.print("Enter rate of interest: ");
+            user.setRate_of_interest(scanner.nextDouble());
+
+
+            System.out.print("Enter tenure: ");
+            user.setTenure(scanner.nextLine());
+
+
+            System.out.print("Enter type of loan: ");
+            user.setType_of_loan(scanner.nextLine());
+
+            System.out.print("Enter eligible security value: ");
+            user.setEligible_security_value(scanner.nextDouble());
+
+
+            System.out.print("Enter security coverage: ");
+            user.setSecurity_coverage(scanner.nextInt());
+
+            System.out.print("Enter security details as per sanction: ");
+            user.setSecurity_details_as_per_sanction(scanner.nextLine());
+
+            System.out.print("Enter client identification done with varification true/false: ");
+            user.setClient_identification_done_with_varification(scanner.hasNextBoolean());
+
+            System.out.print("Enter guarantor identification done with varification true/false: ");
+            user.setGuarantor_identification_done_with_varification(scanner.hasNextBoolean());
+
+            System.out.print("Enter fund utilization ensured true/false: ");
+            user.setFund_utilization_ensured(scanner.hasNextBoolean());
+
+            System.out.print("Enter single borrower exposure limit: ");
+            user.setSingle_borrower_exposure_limit(scanner.nextInt());
+
+            System.out.print("Enter compile with credit policy true/false: ");
+            user.setCompliance_with_credit_policy(scanner.hasNextBoolean());
+
+            System.out.print("Enter comment if any: ");
+            user.setComments(scanner.nextLine());
+
+            userRepo.save(user);
+
+        }, () -> {
+            System.out.println("User not found with ID: " + id);
+        });
     }
 
     //it will show all the users in the database
@@ -136,7 +191,63 @@ public class CommandLineApp implements CommandLineRunner {
     }
 
     // here you add the user using data
-    private void addUser() {
+    private void addUser(Scanner scanner) {
+
+        User user = new User();
+        System.out.println("Enter user details: ");
+
+        System.out.print("Enter account name: ");
+        user.setAccount_name(scanner.nextLine());
+
+        System.out.print("Enter loan account number: ");
+        user.setLoan_account_number(scanner.nextLine());
+
+        System.out.print("Enter An amount: ");
+        user.setAmount(scanner.nextDouble());
+
+
+        System.out.print("Enter rate of interest: ");
+        user.setRate_of_interest(scanner.nextDouble());
+
+
+        System.out.print("Enter tenure: ");
+        user.setTenure(scanner.nextLine());
+
+
+        System.out.print("Enter type of loan: ");
+        user.setType_of_loan(scanner.nextLine());
+
+        System.out.print("Enter eligible security value: ");
+        user.setEligible_security_value(scanner.nextDouble());
+
+
+        System.out.print("Enter security coverage: ");
+        user.setSecurity_coverage(scanner.nextInt());
+
+        System.out.print("Enter security details as per sanction: ");
+        user.setSecurity_details_as_per_sanction(scanner.nextLine());
+
+        System.out.print("Enter client identification done with varification true/false: ");
+        user.setClient_identification_done_with_varification(scanner.hasNextBoolean());
+
+        System.out.print("Enter guarantor identification done with varification true/false: ");
+        user.setGuarantor_identification_done_with_varification(scanner.hasNextBoolean());
+
+        System.out.print("Enter fund utilization ensured true/false: ");
+        user.setFund_utilization_ensured(scanner.hasNextBoolean());
+
+        System.out.print("Enter single borrower exposure limit: ");
+        user.setSingle_borrower_exposure_limit(scanner.nextInt());
+
+        System.out.print("Enter compile with credit policy true/false: ");
+        user.setCompliance_with_credit_policy(scanner.hasNextBoolean());
+
+        System.out.print("Enter comment if any: ");
+        user.setComments(scanner.nextLine());
+
+        System.out.println("Model has added successfully");
+        userRepo.save(user);
+
 
     }
 }
