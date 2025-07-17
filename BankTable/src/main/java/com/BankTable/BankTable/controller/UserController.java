@@ -4,8 +4,10 @@ import com.BankTable.BankTable.model.User;
 import com.BankTable.BankTable.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,6 +25,7 @@ public class UserController {
     @GetMapping("/all")
     public List<User> getAllUsers(){
         return  userRepository.findAll();
+
     }
 
 
@@ -31,18 +34,26 @@ public class UserController {
         return userRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+
     }
 
 
     @PostMapping("/addUser")
-    public User createUser(@RequestBody User user){
-        return  userRepository.save(user);
+    public ResponseEntity<?> createUser(@Valid @RequestBody  User user , BindingResult result){
+        //ResponseEntity.ok().eTag("This is done");
+        if (result.hasErrors()){
+            return ResponseEntity.badRequest().body(result.getAllErrors());
+        }
+        return  ResponseEntity.ok(userRepository.save(user));
+
     }
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<User> updateUser (@PathVariable Long id, @RequestBody User updateUser){
-
+    public ResponseEntity<?> updateUser (@Valid @PathVariable Long id, @RequestBody User updateUser, BindingResult result){
+        if (result.hasErrors()){
+            return ResponseEntity.badRequest().body(result.getAllErrors());
+        }
         return  userRepository.findById(id).map(user -> {
             user.setAccount_name(updateUser.getAccount_name());
             user.setLoan_account_number(updateUser.getLoan_account_number());

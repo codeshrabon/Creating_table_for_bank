@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.*;
 import java.time.Month;
 import java.util.Date;
 
@@ -20,21 +21,46 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank(message = "Account name is mandatory")
     private String account_name;
+    @NotBlank(message = "Loan Account number is required")
     private String loan_account_number;
+    @NotNull(message = "Disbursement date is required")
+    @PastOrPresent(message = "Disbursement date cannot be in the future")
     private Date disbursment_date;
+    @Positive(message = "Amount must be greater than 0")
     private double amount;
+
+    @DecimalMin(value = "0.1", inclusive = true, message = "Rate of interest must be greater than 0")
     private double rate_of_interest;
+
+    @NotBlank(message = "Tenure is required")
     private String tenure;
+
+    @NotBlank(message = "Type of loan is required")
     private String type_of_loan;
+
+    @PositiveOrZero(message = "Eligible security value must be non-negative")
     private double eligible_security_value;
+
+    @Min(value = 0, message = "Security coverage must be zero or positive")
     private int security_coverage;
+
+    @NotBlank(message = "Security details are required")
     private String security_details_as_per_sanction;
+
     private boolean client_identification_done_with_varification;
+
     private boolean guarantor_identification_done_with_varification;
+
     private boolean fund_utilization_ensured;
+
+    @Min(value = 0, message = "Single borrower exposure limit must be non-negative")
     private int single_borrower_exposure_limit;
+
     private boolean compliance_with_credit_policy;
+
+    @Size(max = 100, message = "Comments cannot exceed 250 characters")
     private String comments;
 
 //    public long getSerialNumber() {

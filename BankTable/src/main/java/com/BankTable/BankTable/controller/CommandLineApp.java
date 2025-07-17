@@ -137,10 +137,12 @@ public class CommandLineApp implements CommandLineRunner {
 
             System.out.print("Enter tenure: ");
             user.setTenure(scanner.nextLine());
+            scanner.nextLine();
 
 
             System.out.print("Enter type of loan: ");
             user.setType_of_loan(scanner.nextLine());
+            scanner.nextLine();
 
             System.out.print("Enter eligible security value: ");
             user.setEligible_security_value(scanner.nextDouble());
@@ -153,19 +155,19 @@ public class CommandLineApp implements CommandLineRunner {
             user.setSecurity_details_as_per_sanction(scanner.nextLine());
 
             System.out.print("Enter client identification done with varification true/false: ");
-            user.setClient_identification_done_with_varification(scanner.hasNextBoolean());
+            user.setClient_identification_done_with_varification(scanner.nextBoolean());
 
             System.out.print("Enter guarantor identification done with varification true/false: ");
-            user.setGuarantor_identification_done_with_varification(scanner.hasNextBoolean());
+            user.setGuarantor_identification_done_with_varification(scanner.nextBoolean());
 
             System.out.print("Enter fund utilization ensured true/false: ");
-            user.setFund_utilization_ensured(scanner.hasNextBoolean());
+            user.setFund_utilization_ensured(scanner.nextBoolean());
 
             System.out.print("Enter single borrower exposure limit: ");
             user.setSingle_borrower_exposure_limit(scanner.nextInt());
 
             System.out.print("Enter compile with credit policy true/false: ");
-            user.setCompliance_with_credit_policy(scanner.hasNextBoolean());
+            user.setCompliance_with_credit_policy(scanner.nextBoolean());
 
             System.out.print("Enter comment if any: ");
             user.setComments(scanner.nextLine());
