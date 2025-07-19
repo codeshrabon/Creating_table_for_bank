@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-
+//@CrossOrigin(origins = "http://localhost:3001")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/bank")
 public class UserController {
@@ -24,7 +25,9 @@ public class UserController {
 
     @GetMapping("/all")
     public List<User> getAllUsers(){
-        return  userRepository.findAll();
+        List<User > user = userRepository.findAll();
+        System.out.print(user);
+        return  user;
 
     }
 
